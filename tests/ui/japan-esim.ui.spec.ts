@@ -1,23 +1,29 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../../pages/Homepage';
+import { ESimPage } from '../../pages/ESimPage';
 
 test('shows the selected 7 days unlimited Japan eSIM price in the cart', async ({ page }) => {
+  const homePage = new HomePage(page);
+  const eSimPage = new ESimPage(page);
+  const location = "Japan";
+
   // Navigate to the Airalo website
-  await page.goto('/');
+  await homePage.open();
 
   // Search "Japan"
-  await page.locator("[data-testid=search-input_text-field]").fill("Japan");
+  await homePage.searchLocation(location);
 
   // Select "Japan" option
-  await page.getByRole("link", { name: /Japan/i }).click();
+  await homePage.selectLocation(location);
 
   // Select "Unlimited" plans tab
-  await page.getByRole("tab", { name: /unlimited/i }).click();
+  await eSimPage.selectTab("unlimited");
 
   // Select "7 days" plan
-  const sevenDaysUnlimitedPlan = page.getByRole("button", { name: /Select Unlimited - 7 days/i });
-  await sevenDaysUnlimitedPlan.click();
+  await eSimPage.selectPlan("Select Unlimited - 7 days");
 
   // Validate package price is correct
-  const packagePrice = await sevenDaysUnlimitedPlan.getByTestId("price_amount").innerText();
-  await expect(page.getByTestId("cart-navigation_container").getByTestId("price_amount")).toHaveText(packagePrice);
+  const packagePrice = await eSimPage.getPackagePrice("Select Unlimited - 7 days");
+
+  await eSimPage.expectCartPriceToBe(packagePrice);
 });
