@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 
 export class HomePage {
     readonly searchInput: Locator;
@@ -9,6 +9,7 @@ export class HomePage {
 
     async open() {
         await this.page.goto("/", { waitUntil: "domcontentloaded" });
+        await expect(this.searchInput).toBeVisible();
     }
 
     async searchLocation(location: string) {

@@ -20,10 +20,9 @@ test('shows the selected 7 days unlimited Japan eSIM price in the cart', async (
   await eSimPage.selectTab("unlimited");
 
   // Select "7 days" plan
+  const packagePrice = await eSimPage.getPackagePrice("Select Unlimited - 7 days");
   await eSimPage.selectPlan("Select Unlimited - 7 days");
 
   // Validate package price is correct
-  const packagePrice = await eSimPage.getPackagePrice("Select Unlimited - 7 days");
-
   await eSimPage.expectCartPriceToBe(packagePrice);
 });

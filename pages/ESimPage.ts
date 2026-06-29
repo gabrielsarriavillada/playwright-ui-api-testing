@@ -7,10 +7,6 @@ export class ESimPage {
         this.cartPrice = page.getByTestId("cart-navigation_container").getByTestId("price_amount");
     }
 
-    async open() {
-        await this.page.goto("/");
-    }
-
     async selectTab(tabName: string) {
         await this.page.getByRole("tab", { name: new RegExp(tabName, "i") }).click();
     }
