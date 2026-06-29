@@ -55,6 +55,7 @@ npx playwright show-report
 
 - Playwright was used for both UI and API automation to keep the solution consistent.
 - API interactions were encapsulated in a dedicated AiraloApi client.
+- UI page interactions are encapsulated using Page Object Model classes to keep tests readable and reduce selector duplication.
 - Environment variables are used for credentials and configuration.
 - Test execution is separated into UI and API Playwright projects.
 - Explicit response validation is performed for status codes, messages, order details, and eSIM properties.
