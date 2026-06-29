@@ -1,7 +1,7 @@
 import { APIRequestContext, expect } from '@playwright/test';
 import { OrderResponse } from '../models/order-response.model';
 import { TokenResponse } from '../models/token-response.model';
-import { ESimResponse } from '../models/esim-response.mode';
+import { ESimResponse } from '../models/esim-response.model';
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
