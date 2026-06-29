@@ -30,7 +30,7 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'ui-chromium',
+      name: 'chromium',
       testMatch: /.*\.ui\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
